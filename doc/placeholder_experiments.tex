@@ -1,0 +1,59 @@
+\documentclass{scrartcl}
+
+\usepackage{etoolbox}
+
+\usepackage{tcolorbox}
+\tcbuselibrary{listingsutf8}
+
+\usepackage{parskip}
+
+\pagenumbering{gobble}
+
+% A macro for testing purposes.
+\newcommand{\foo}{This is \textbackslash foo's output.}
+
+% Expects a macro name as #1.
+% Expands \#1 if it is defined, otherwise displays a message.
+\newcommand{\placeholder}[1]{
+    \ifcsdef{#1}
+    {\csuse{#1}}
+    {\textbf{#1 not defined}}
+}
+
+
+\begin{document}
+\section*{Experiments with a placeholder macro}
+
+\begin{tcblisting}{title={Define a macro \textbackslash foo that will be used in our experiments.}, listing only}
+\newcommand{\foo}{This is \textbackslash foo's output.}
+\end{tcblisting}
+
+\begin{tcblisting}{title={Using \textbackslash ifundef from the etoolbox package.}}
+\ifundef{\foo}{\textbf{foo not defined}}{\foo} \\
+\ifundef{\babar}{\textbf{babar not defined}}{\babar}
+\end{tcblisting}
+
+\begin{tcblisting}{title={How to expand a macro with \textbackslash csuse.}}
+\csuse{foo} \\
+\csuse{babar}
+\end{tcblisting}
+
+\begin{tcblisting}{title={Combining \textbackslash ifundef and \textbackslash csuse.}}
+\ifcsdef{foo}{\csuse{foo}}{\textbf{foo not defined}} \\
+\ifcsdef{babar}{\csuse{babar}}{\textbf{babar not defined}}
+\end{tcblisting}
+
+\begin{tcblisting}{title={Define a macro \textbackslash placeholder.}, listing only}
+\newcommand{\placeholder}[1]{
+    \ifcsdef{#1}
+    {\csuse{#1}}
+    {\textbf{#1 not defined}}
+}
+\end{tcblisting}
+
+\begin{tcblisting}{title={Using the custom \textbackslash placeholder macro.}}
+\placeholder{foo} \\
+\placeholder{babar}
+\end{tcblisting}
+
+\end{document}

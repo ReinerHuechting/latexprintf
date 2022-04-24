@@ -1,0 +1,8 @@
+# LaTeX by-products
+*.aux
+*.log
+*.listing
+
+# Generated pdf files
+latexprintf.pdf
+placeholder_experiments.pdf
