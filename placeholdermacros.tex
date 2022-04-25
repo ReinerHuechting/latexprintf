@@ -1,0 +1,12 @@
+\usepackage{etoolbox}
+
+% Expects a macro and a text.
+% Checks if the macro exists and expands it.
+% Inserts the text as a replacement if the macro doesn't exist.
+\newcommand{\expandOrReplace}[2]{
+    % #1: Macro name to check for
+    % #2: Replacement text
+    \ifcsdef{#1}
+    {\csuse{#1}}
+    {#2}
+}

@@ -1,0 +1,28 @@
+\documentclass{scrartcl}
+
+\usepackage{parskip}
+
+\input{placeholdermacros.tex}
+
+\newcommand{\testA}{TestAText}
+
+\begin{document}
+    \section*{Tests for \textbackslash expandOrReplace}
+    
+    \subsection*{Apply \textbackslash expandOrReplace to a defined macro.}
+    \begin{tabular}{ll}
+        \textbf{Test Macro} & \textbackslash testA defined as TestAText \\
+        \textbf{Call} & \textbackslash expandOrReplace\{testA\}\{replacementA\} \\
+        \textbf{Expected} & TestAText \\
+        \textbf{Actual} & \expandOrReplace{testA}{replacementA} \\
+    \end{tabular}
+
+    \subsection*{Apply \textbackslash expandOrReplace to an undefined macro.}
+    \begin{tabular}{ll}
+        \textbf{Test Macro} & \textbackslash testB not defined \\
+        \textbf{Call} & \textbackslash expandOrReplace\{testB\}\{replacementB\} \\
+        \textbf{Expected} & replacementB \\
+        \textbf{Actual} & \expandOrReplace{testB}{replacementB} \\
+    \end{tabular}
+
+\end{document}
